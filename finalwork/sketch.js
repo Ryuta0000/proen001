@@ -9,6 +9,7 @@ let hp = 0;
 let life = 0;
 let level1=0;
 let level2=0;
+let level3=0;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
@@ -43,6 +44,7 @@ function draw(){
       page = 1;
       level1 = 30
       level2 = 70
+      level3 = 110
     } 
     }
     
@@ -86,7 +88,7 @@ function draw(){
       page = 3
     }
   
-  if(frameCount % level1 == 0|| frameCount % level2 == 0){
+  if(frameCount % level1 == 0|| frameCount % level2 == 0|| frameCount % level3 == 0){
     notes.push({x:width + 10, y:height/2, vx: -10, nc: floor(random(2))})
   }
   for(let i = 0;i < notes.length; i ++){
@@ -321,6 +323,7 @@ function draw(){
       life = 0;
       level1 = 0;
       level2 = 0;
+      level3 = 0;
     }
   }
 
@@ -341,6 +344,7 @@ function draw(){
       life = 0;
       level1 = 0;
       level2 =0;
+      level3 = 0;
     }
   }
 
