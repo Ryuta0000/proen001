@@ -308,9 +308,9 @@ function draw(){
     
 
     fill(255,230,50);
-    textSize(50);
+    textSize(100);
     textAlign(CENTER, CENTER);
-    text("討伐完了！", width/2, height/2 + 100);
+    text("！討伐完了！", width/2, height/2 + 100);
     fill(0);
     textSize(30);
     textAlign(CENTER, CENTER);
