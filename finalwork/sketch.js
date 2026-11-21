@@ -41,8 +41,8 @@ function draw(){
      }
     if (keyIsDown(UP_ARROW)){
       page = 1;
-      level1 = 20
-      level2 = 60
+      level1 = 25
+      level2 = 65
     } 
     }
     
