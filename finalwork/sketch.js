@@ -319,6 +319,7 @@ function draw(){
       notes = [];
       hp = 0;
       life = 0;
+      level1 = 0;
     }
   }
 
@@ -337,6 +338,7 @@ function draw(){
       notes = [];
       hp = 0;
       life = 0;
+      level2 =0;
     }
   }
 
