@@ -7,8 +7,8 @@ let nco = 0;
 let page = 0;
 let hp = 0;
 let life = 0;
-let level1;
-let level2;
+let level1=0;
+let level2=0;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
@@ -312,14 +312,15 @@ function draw(){
     fill(0);
     textSize(30);
     textAlign(CENTER, CENTER);
-    text("もう一度やりたければ、↑矢印を押してください！", width/2, height/2+200);
-    if (keyIsDown(UP_ARROW)){
+    text("もう一度やりたければ、←矢印を押してください！", width/2, height/2+200);
+    if (keyIsDown(LEFT_ARROW)){
       page = 0;
       scores = 0;
       notes = [];
       hp = 0;
       life = 0;
       level1 = 0;
+      level2 = 0;
     }
   }
 
@@ -331,13 +332,14 @@ function draw(){
     text("討伐失敗", width/2, height/2);
     textSize(30);
     text("あなたはうりぼーに食べられました",width/2,height/2+100);
-    text("もう一度やりたければ、↑矢印を押してください",width/2, height/2+140)
-    if(keyIsDown(UP_ARROW)){
+    text("もう一度やりたければ、←矢印を押してください",width/2, height/2+140)
+    if(keyIsDown(LEFT_ARROW)){
       page = 0;
       scores = 0;
       notes = [];
       hp = 0;
       life = 0;
+      level1 = 0;
       level2 =0;
     }
   }
