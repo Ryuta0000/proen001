@@ -274,15 +274,15 @@ function draw(){
   // fill(255,0,0);  
   // rect(width/2-80, height/2- 127, 263, 30);   
   textSize(35)
-    textAlign(LEFT, CENTER)
+    textAlign(RIGHT, CENTER)
     if((1000-hp)>100){
     fill(255,255,255);
     textFont("MonoSpace")
-    text("うりぼーのHP:" + (1000-hp), width-310, 33)
+    text("うりぼーのHP:" + (1000-hp), width-10, 33)
     }else{
       fill(255,0,0);
     textFont("MonoSpace")
-    text("うりぼーのHP:" + (1000-hp), width-310, 33)
+    text("うりぼーのHP:" + (1000-hp), width-10, 33)
     }
   
   }
