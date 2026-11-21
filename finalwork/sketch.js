@@ -6,6 +6,7 @@ let scores = 0;
 let nco = 0;
 let page = 0;
 let hp = 0;
+let life = 0;
 function setup(){
   createCanvas(windowWidth, windowHeight);
   background(139, 90, 43); 
@@ -27,29 +28,54 @@ function draw(){
     textFont("MonoSpace");
     text("うりぼー討伐", width/2, height/2 - 100);
     textSize(30);
-    text("赤丸は下矢印　青丸は右矢印で叩こう", width/2, height/2);
+    text("赤丸は↓矢印　青丸は→矢印で叩こう", width/2, height/2);
     textSize(30);
-    text("下矢印でスタート", width/2, height/2 + 100);
+    text("↓矢印で討伐開始", width/2, height/2 + 100);
     if (keyIsDown(DOWN_ARROW)){
       page = 1;
      }
     }
   if(page == 1){
      background(50);
-  backg();
-  kosi(0,height/2 +75 );
-  if(scores<=-50){
-    textSize(30);
-    textAlign(CENTER, CENTER);
-    text("LIFE: ❤️❤️", 0, 0);
-    elseif(scores<= -100){
-      textSize(30);
-      textAlign(CENTER, CENTER);
-      text("LIFE: ❤️", 0, 0);
+    backg();
+    kosi(0,height/2 +75 );
+    fill(255)//(45,25,13)
+    
+    if(life==10){
+    textSize(45);
+    textAlign(LEFT, CENTER);
+    text("LIFE: ❤️❤️💔", 18, 35);
     }
-  }
+    else if(life==20){
+      textSize(45);
+      textAlign(LEFT, CENTER);
+      text("LIFE: ❤️❤️", 18, 35);
+    }
+    else if(life==30){
+      textSize(45);
+      textAlign(LEFT, CENTER);
+      text("LIFE: ❤️💔", 18, 35);
+    }
+    if(life==40){
+      textSize(45);
+      textAlign(LEFT, CENTER);
+      text("LIFE: ❤️", 18, 35);
+    }
+    if(life==50){
+      textSize(45);
+      textAlign(LEFT, CENTER);
+      text("LIFE: 💔", 18, 35);
+    }
+    if(life ==0){//scores>-40
+    textSize(45);
+    textAlign(LEFT, CENTER);
+    text("LIFE: ❤️❤️❤️", 18, 35);
+    }
+    if(life == 60){
+      page = 3
+    }
   
-  if(frameCount % 70 == 0){
+  if(frameCount % 160 == 0|| frameCount % 90 == 0){
     notes.push({x:width + 10, y:height/2, vx: -10, nc: floor(random(2))})
   }
   for(let i = 0;i < notes.length; i ++){
@@ -66,10 +92,11 @@ function draw(){
     let no = notes[i];
 
     if(no.x < 0){
-      resulttext = "不可";
+      resulttext = "相手の攻撃";
       resulttimer = 20;
       scores -= 20;
       hp -= 0//revised
+      life += 10;//実験
       notes.splice(i,1);
     } 
   }  
@@ -81,24 +108,25 @@ function draw(){
     let no = notes[i];
     
         if(abs(no.x - width/10) < 10){
-          resulttext = "良";
+          resulttext = "50";
           resulttimer = 20;
-          scores += 100;
-          hp +=100;
+          scores += 50;
+          hp +=50;
           notes.splice(i,1);
         }
         else if (abs(no.x - width/10) < 30){
-          resulttext = "可";
+          resulttext = "30";
           resulttimer = 20;
-          scores += 50;
-          hp += 50;
+          scores += 30;
+          hp += 30;
           notes.splice(i,1);
         }
         else if (abs(no.x - width/10) < 50){
-          resulttext = "不可";
+          resulttext = "相手の攻撃";
           resulttimer = 20;
           scores -= 20;
           hp -=0;
+          life += 10;//実験
           notes.splice(i,1);
         }
       }
@@ -112,10 +140,11 @@ function draw(){
        for(let i = 0; i < notes.length; i ++){
     let no = notes[i];
          if (abs(no.x - width/10) < 50){
-          resulttext = "不可";
+          resulttext = "相手の攻撃";
           resulttimer = 20;
           scores -= 20;
           hp -= 0;
+          life += 10;//実験
           notes.splice(i,1);
         }
       }
@@ -127,7 +156,6 @@ function draw(){
      ellipse(width/2 - 60, height-150, 40, 80);
      ellipse(width/2 + 60, height-150, 40, 80);
     }
-
     
     
   }
@@ -137,24 +165,25 @@ function draw(){
     let no = notes[i];
     
         if(abs(no.x - width/10) < 10){
-          resulttext = "良";
-          resulttimer = 20;
-          scores += 100;
-          hp += 100;
-          notes.splice(i,1);
-        }
-        else if (abs(no.x - width/10) < 30){
-          resulttext = "可";
+          resulttext = "50";
           resulttimer = 20;
           scores += 50;
           hp += 50;
           notes.splice(i,1);
         }
+        else if (abs(no.x - width/10) < 30){
+          resulttext = "30";
+          resulttimer = 20;
+          scores += 30;
+          hp += 30;
+          notes.splice(i,1);
+        }
         else if (abs(no.x - width/10) < 50){
-          resulttext = "不可";
+          resulttext = "相手の攻撃";
           resulttimer = 20;
           scores -= 20;
           hp -= 0;
+          life += 10;
           notes.splice(i,1);
         }
       }
@@ -170,9 +199,11 @@ function draw(){
        for(let i = 0; i < notes.length; i ++){
     let no = notes[i];
          if (abs(no.x - width/10) < 50){
-          resulttext = "不可";
+          resulttext = "相手の攻撃";
           resulttimer = 20;
           scores -= 20;
+          hp -= 0;
+          life += 10
           notes.splice(i,1);
         }
       }
@@ -192,14 +223,23 @@ function draw(){
   
   if(resulttimer > 0){
   push();
-  textAlign(CENTER, CENTER);
-  textSize(50);
+  if(resulttext == "相手の攻撃"){
+    textSize(25);
+    textAlign(CENTER, TOP);
+  }else{
+    textSize(50);
+    textAlign(CENTER, CENTER);
+  } 
   textStyle(BOLD);
   textFont("Arial Black");
 
-  if(resulttext == "良"){
+  if(resulttext == "50"){
     fill(255, 0, 0);
-  }else{
+  }
+  else if(resulttext == "30"){
+    fill(255,165,0);
+  }    
+  else{
     fill(0);
   }
      
@@ -214,19 +254,25 @@ function draw(){
     // fill(0);
     // textFont("MonoSpace");
     // text("スコア: " + scores, width - 20, 30);
-    if((200-hp) <= 0){
+    if((1000-hp) <= 0){
       page = 2;
     }
-    if(scores < -60000){
-      page = 3;
-    }  
-  fill(255,0,0);  
-  rect(width/2-80, height/2- 127, 263, 30);   
-  textSize(30)
-    textAlign(CENTER, CENTER);
-    fill(0);
+    // if(scores < -120){
+    //   page = 3;
+    // }  
+  // fill(255,0,0);  
+  // rect(width/2-80, height/2- 127, 263, 30);   
+  textSize(35)
+    textAlign(LEFT, CENTER)
+    if((1000-hp)>100){
+    fill(255,255,255);
     textFont("MonoSpace")
-    text("うりぼーのHP: " + (200-hp), width/2+50, height/2- 110)
+    text("うりぼーのHP:" + (1000-hp), width-310, 33)
+    }else{
+      fill(255,0,0);
+    textFont("MonoSpace")
+    text("うりぼーのHP:" + (1000-hp), width-310, 33)
+    }
   
   }
   
@@ -248,18 +294,20 @@ function draw(){
 
     
 
-    fill(0);
+    fill(255,230,50);
     textSize(50);
     textAlign(CENTER, CENTER);
-    text("ゲームクリア！", width/2, height/2 + 100);
+    text("討伐完了！", width/2, height/2 + 100);
+    fill(0);
     textSize(30);
     textAlign(CENTER, CENTER);
-    text("もう一度やりたければ、上矢印を押してください", width/2, height/2+200);
+    text("もう一度やりたければ、↑矢印を押してください！", width/2, height/2+200);
     if (keyIsDown(UP_ARROW)){
       page = 0;
       scores = 0;
       notes = [];
       hp = 0;
+      life = 0;
     }
   }
 
@@ -268,15 +316,16 @@ function draw(){
     fill(255,0,0);
     textSize(80);
     textAlign(CENTER, CENTER);
-    text("GAME OVER", width/2, height/2);
+    text("討伐失敗", width/2, height/2);
     textSize(30);
     text("あなたはうりぼーに食べられました",width/2,height/2+100);
-    text("もう一度やりたければ、上矢印を押してください",width/2, height/2+140)
+    text("もう一度やりたければ、↑矢印を押してください",width/2, height/2+140)
     if(keyIsDown(UP_ARROW)){
       page = 0;
       scores = 0;
       notes = [];
       hp = 0;
+      life = 0;
     }
   }
 
@@ -338,17 +387,17 @@ function keyPressed(){
     if(keyCode == DOWN_ARROW){
       console.log("押された");
         if(abs(no.x - width/10) < 10){
-          resulttext = "良";
+          resulttext = "50";
           resulttimer = 20;
           notes.splice(i,1);
         }
         else if (abs(no.x - width/10) < 40){
-          resulttext = "可";
+          resulttext = "30";
           resulttimer = 20;
           notes.splice(i,1);
         }
         else if (abs(no.x - width/10) < 70){
-          resulttext = "不可";
+          resulttext = "相手の攻撃";
           resulttimer = 20;
           notes.splice(i,1);
         }
@@ -357,6 +406,6 @@ function keyPressed(){
 }
 function kosi(x,y){
   fill(255, 255, 0);
-  
+  //あ
 
 }
