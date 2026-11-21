@@ -7,6 +7,9 @@ let nco = 0;
 let page = 0;
 let hp = 0;
 let life = 0;
+let level1;
+let level2;
+
 function setup(){
   createCanvas(windowWidth, windowHeight);
   background(139, 90, 43); 
@@ -30,11 +33,19 @@ function draw(){
     textSize(30);
     text("赤丸は↓矢印　青丸は→矢印で叩こう", width/2, height/2);
     textSize(30);
-    text("↓矢印で討伐開始", width/2, height/2 + 100);
+    text("↓矢印で討伐開始(初級)　↑矢印で討伐開始(上級)", width/2, height/2 + 100);
     if (keyIsDown(DOWN_ARROW)){
       page = 1;
+      level1 = 50
+      level2 = 90
      }
+    if (keyIsDown(UP_ARROW)){
+      page = 1;
+      level1 = 30
+      level2 = 16
+    } 
     }
+    
   if(page == 1){
      background(50);
     backg();
@@ -75,7 +86,7 @@ function draw(){
       page = 3
     }
   
-  if(frameCount % 160 == 0|| frameCount % 90 == 0){
+  if(frameCount % level1 == 0|| frameCount % level2 == 0){
     notes.push({x:width + 10, y:height/2, vx: -10, nc: floor(random(2))})
   }
   for(let i = 0;i < notes.length; i ++){
@@ -406,6 +417,6 @@ function keyPressed(){
 }
 function kosi(x,y){
   fill(255, 255, 0);
-  //あい
+
 
 }
