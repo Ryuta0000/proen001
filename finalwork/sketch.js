@@ -406,6 +406,6 @@ function keyPressed(){
 }
 function kosi(x,y){
   fill(255, 255, 0);
-  //あ
+  //あい
 
 }
