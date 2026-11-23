@@ -32,15 +32,15 @@ function draw(){
     textFont("MonoSpace");
     text("うりぼー討伐", width/2, height/2 - 100);
     textSize(30);
-    text("赤丸は↓矢印　青丸は→矢印で叩こう", width/2, height/2);
+    text("赤丸は⇩矢印　青丸は⇨矢印で叩こう", width/2, height/2);
     textSize(30);
-    text("↓矢印で討伐開始(初級)　↑矢印で討伐開始(上級)", width/2, height/2 + 100);
+    text("⇩矢印で討伐開始(初級)　⇨矢印で討伐開始(上級)", width/2, height/2 + 100);
     if (keyIsDown(DOWN_ARROW)){
       page = 1;
       level1 = 50
       level2 = 90
      }
-    if (keyIsDown(UP_ARROW)){
+    if (keyIsDown(RIGHT_ARROW)){
       page = 1;
       level1 = 20
       level2 = 50
@@ -51,8 +51,7 @@ function draw(){
   if(page == 1){
      background(50);
     backg();
-    kosi(0,height/2 +75 );
-    fill(255)//(45,25,13)
+    
     
     if(life==10){
     textSize(45);
@@ -79,7 +78,7 @@ function draw(){
       textAlign(LEFT, CENTER);
       text("LIFE: 💔", 18, 35);
     }
-    if(life ==0){//scores>-40
+    if(life ==0){
     textSize(45);
     textAlign(LEFT, CENTER);
     text("LIFE: ❤️❤️❤️", 18, 35);
@@ -108,8 +107,8 @@ function draw(){
       resulttext = "相手の攻撃";
       resulttimer = 20;
       scores -= 20;
-      hp -= 0//revised
-      life += 10;//実験
+      hp -= 0
+      life += 10;
       notes.splice(i,1);
     } 
   }  
@@ -262,19 +261,11 @@ function draw(){
   pop();
   }
   if(page == 1){
-    // textSize(30);
-    // textAlign(RIGHT, CENTER);
-    // fill(0);
-    // textFont("MonoSpace");
-    // text("スコア: " + scores, width - 20, 30);
+
     if((1000-hp) <= 0){
       page = 2;
     }
-    // if(scores < -120){
-    //   page = 3;
-    // }  
-  // fill(255,0,0);  
-  // rect(width/2-80, height/2- 127, 263, 30);   
+      
   textSize(35)
     textAlign(RIGHT, CENTER)
     if((1000-hp)>100){
@@ -297,8 +288,7 @@ function draw(){
     line(width/2+200, 200, width/2 +150, 150);
     line(width/2+200, 150, width/2+150, 200);
     ellipse(width/2, 280, 40, 80);
-    //line(width/2-100, 300, width/2+100, 260);
-    //line(width/2-100, 260, width/2 +100, 300);
+    
     
     strokeWeight(0)
     triangle(width/2 -80, 0, width/2 -60, 0, width/2 - 50, 130);
@@ -314,8 +304,8 @@ function draw(){
     fill(0);
     textSize(30);
     textAlign(CENTER, CENTER);
-    text("もう一度やりたければ、←矢印を押してください！", width/2, height/2+200);
-    if (keyIsDown(LEFT_ARROW)){
+    text("もう一度やりたければ、⇧矢印を押してください！", width/2, height/2+200);
+    if (keyIsDown(UP_ARROW)){
       page = 0;
       scores = 0;
       notes = [];
@@ -335,8 +325,8 @@ function draw(){
     text("討伐失敗", width/2, height/2);
     textSize(30);
     text("あなたはうりぼーに食べられました",width/2,height/2+100);
-    text("もう一度やりたければ、←矢印を押してください",width/2, height/2+140)
-    if(keyIsDown(LEFT_ARROW)){
+    text("もう一度やりたければ、⇧矢印を押してください",width/2, height/2+140)
+    if(keyIsDown(UP_ARROW)){
       page = 0;
       scores = 0;
       notes = [];
@@ -422,9 +412,4 @@ function keyPressed(){
         }
     }
   }
-}
-function kosi(x,y){
-  fill(255, 255, 0);
-
-
 }
